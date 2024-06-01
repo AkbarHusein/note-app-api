@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from "express"
 
-const loginhandler = (req: Request, res: Response, next: NextFunction) => {
+const loginHandler = (req: Request, res: Response, next: NextFunction) => {
     const { username, email, password } = req.body
 
     try {
@@ -10,4 +10,4 @@ const loginhandler = (req: Request, res: Response, next: NextFunction) => {
     }
 }
 
-export default loginhandler
+export default loginHandler

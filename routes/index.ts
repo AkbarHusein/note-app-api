@@ -1,13 +1,10 @@
-import { Router, Request, Response, NextFunction } from 'express'
+import { Router } from 'express'
+import validator, { auth } from '../middlewares/validator'
+import { loginhandler, registerhandler } from '../controllers'
 
 const router = Router()
 
-router.get('/login', (req: Request, res: Response, next: NextFunction) => {
-    try {
-        res.send('login')
-    } catch (error) {
-        next(error)
-    }
-})
+router.post('/register', auth.registValidation, validator, registerhandler)
+router.post('/login', auth.loginValidation, validator, loginhandler)
 
 export default router

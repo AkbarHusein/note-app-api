@@ -9,7 +9,7 @@ const app: Express = express()
 const host = process.env.HOST
 const port = process.env.PORT
 
-app.use('/', router)
+app.use('/api', router)
 app.use(errorhandler)
 
 app.listen(port, () => {

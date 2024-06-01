@@ -1,4 +1,4 @@
-import registerhandler from "./auth/register.controller"
+import registerHandler from "./auth/register.controller"
 import loginHandler from "./auth/login.controller"
 
-export { registerhandler, loginHandler }
+export { registerHandler, loginHandler }

@@ -3,7 +3,7 @@ import pc from "../../utils/prisma"
 import status from 'http-status'
 import { hashSync } from 'bcryptjs'
 
-const registerhandler = async (req: Request, res: Response, next: NextFunction) => {
+const registerHandler = async (req: Request, res: Response, next: NextFunction) => {
     const { username, email, password } = req.body
 
     try {
@@ -26,4 +26,4 @@ const registerhandler = async (req: Request, res: Response, next: NextFunction) 
     }
 }
 
-export default registerhandler
+export default registerHandler

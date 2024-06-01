@@ -11,6 +11,7 @@ const errorhandler: ErrorRequestHandler = (err, req: Request, res: Response, nex
     })
 
     console.error(`[Server]: [${new Date().toISOString()}] ${req.method} ${req.url} - ${message}`)
+    next()
 }
 
 export default errorhandler

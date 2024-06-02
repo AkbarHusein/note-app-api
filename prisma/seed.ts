@@ -30,30 +30,29 @@ async function main() {
     console.log('[----------------------- Seeding Notes -----------------------]')
     console.log(notes)
 
-    // const categoriess = await pc.categoriess.createMany({
-    //     data: [
-    //         {
-    //             name: 'Hari Saya',
-    //             icon: 'ri-sun-line',
-    //         },
-    //         {
-    //             name: 'Penting',
-    //             icon: 'ri-star-line',
-    //         },
-    //         {
-    //             name: 'Terencana',
-    //             icon: 'ri-calendar-2-line',
-    //         },
-    //         {
-    //             name: 'Tugas',
-    //             icon: 'ri-checkbox-line',
-    //         },
+    const categoriess = await pc.categoriess.createMany({
+        data: [
+            {
+                name: 'Hari Saya',
+                icon: 'ri-sun-line'
+            },
+            {
+                name: 'Penting',
+                icon: 'ri-star-line'
+            },
+            {
+                name: 'Terencana',
+                icon: 'ri-calendar-2-line'
+            },
+            {
+                name: 'Tugas',
+                icon: 'ri-checkbox-line'
+            },
+        ]
+    })
 
-    //     ]
-    // })
-    // console.log('[----------------------- Seeding Categoriess -----------------------]')
-    // console.log(categoriess)
-
+    console.log('[----------------------- Seeding Categoriess -----------------------]')
+    console.log(categoriess)
 }
 
 main()

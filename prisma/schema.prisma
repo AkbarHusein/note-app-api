@@ -18,27 +18,26 @@ model User {
 }
 
 model Note {
-  id         String   @id @default(uuid())
-  user_email String
-  user       User?    @relation(fields: [user_email], references: [email])
-  // categories_id String?
-  // category      Categoriess? @relation(fields: [categories_id], references: [id])
-  title      String   @db.VarChar(80)
-  content    String   @db.Text
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt()
+  id            String       @id @default(uuid())
+  user_email    String
+  user          User?        @relation(fields: [user_email], references: [email])
+  categories_id String?
+  category      Categoriess? @relation(fields: [categories_id], references: [id])
+  title         String       @db.VarChar(80)
+  content       String       @db.Text
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt()
 }
 
-// model Categoriess {
-//   id         String   @id @default(uuid())
-//   name       String   @unique @db.VarChar(150)
-//   icon       String?  @default("ri-list-check") @db.VarChar(40)
-//   Notes      Note[]
-//   theme_name String
-//   theme      Theme    @relation(fields: [theme_name], references: [name])
-//   createdAt  DateTime @default(now())
-//   updatedAt  DateTime @updatedAt()
-// }
+model Categoriess {
+  id        String   @id @default(uuid())
+  name      String   @unique @db.VarChar(150)
+  icon      String?  @default("ri-list-check") @db.VarChar(40)
+  Notes     Note[]
+  // theme_name String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+}
 
 // model Theme {
 //   id          String        @id @default(uuid())

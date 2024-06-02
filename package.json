@@ -41,6 +41,9 @@
     "start": "node dist/server.js",
     "dev": "nodemon server.ts"
   },
+  "prisma": {
+    "seed": "ts-node --transpile-only prisma/seed.ts"
+  },
   "keywords": [
     "note-api",
     "api",

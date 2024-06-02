@@ -33,13 +33,16 @@ async function main() {
     const theme = await pc.theme.createMany({
         data: [
             {
-                name: '#000000',
+                name: 'Black',
+                code: '#000000',
             },
             {
-                name: '#DDDDDD',
+                name: 'Grey',
+                code: '#DDDDDD',
             },
             {
-                name: '#FFFFFF',
+                name: 'White',
+                code: '#FFFFFF',
             },
         ]
     })
@@ -52,22 +55,22 @@ async function main() {
             {
                 name: 'Hari Saya',
                 icon: 'ri-sun-line',
-                theme_name: '#000000'
+                theme_name: 'White'
             },
             {
                 name: 'Penting',
                 icon: 'ri-star-line',
-                theme_name: '#000000'
+                theme_name: 'Black'
             },
             {
                 name: 'Terencana',
                 icon: 'ri-calendar-2-line',
-                theme_name: '#000000'
+                theme_name: 'Grey'
             },
             {
                 name: 'Tugas',
                 icon: 'ri-checkbox-line',
-                theme_name: '#000000'
+                theme_name: 'White'
             },
         ]
     })

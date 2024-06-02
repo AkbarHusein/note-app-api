@@ -20,7 +20,7 @@ model User {
   password  String   @db.Text
   Notes     Notes[]
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @updatedAt()
 }
 
 model Notes {
@@ -32,7 +32,7 @@ model Notes {
   title           String      @db.VarChar(80)
   content         String      @db.Text
   createdAt       DateTime    @default(now())
-  updatedAt       DateTime    @updatedAt
+  updatedAt       DateTime    @updatedAt()
 }
 
 model Categoriess {
@@ -43,7 +43,7 @@ model Categoriess {
   theme      Theme?   @relation(fields: [theme_name], references: [name])
   Notes      Notes?
   createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  updatedAt  DateTime @updatedAt()
 }
 
 model Theme {
@@ -51,5 +51,5 @@ model Theme {
   name        String       @unique @db.VarChar(150)
   Categoriess Categoriess?
   createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  updatedAt   DateTime     @updatedAt()
 }

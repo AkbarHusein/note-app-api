@@ -14,8 +14,42 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid())
-  username String
-  email    String @unique
-  password String @db.Text
+  id        String   @id @default(uuid())
+  username  String   @db.VarChar(80)
+  email     String   @unique
+  password  String   @db.Text
+  Notes     Notes[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Notes {
+  id              String      @id @default(uuid())
+  user            User?       @relation(fields: [user_email], references: [email])
+  user_email      String?
+  categoriess     Categoriess @relation(fields: [categories_name], references: [name])
+  categories_name String      @unique
+  title           String      @db.VarChar(80)
+  content         String      @db.Text
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+}
+
+model Categoriess {
+  id         String   @id @default(uuid())
+  name       String   @unique @db.VarChar(150)
+  icon       String?  @default("ri-list-check") @db.VarChar(40)
+  theme_name String?  @unique @default("default") @db.VarChar(150)
+  theme      Theme?   @relation(fields: [theme_name], references: [name])
+  Notes      Notes?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Theme {
+  id          String       @id @default(uuid())
+  name        String       @unique @db.VarChar(150)
+  Categoriess Categoriess?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 }

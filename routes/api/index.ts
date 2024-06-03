@@ -2,9 +2,9 @@ import { Router } from "express";
 import notesRouter from "./notes";
 import categoriesRouter from "./categories";
 
-const router = Router()
+const apiRouter = Router()
 
-router.use('/notes', notesRouter)
-router.use('/categories', categoriesRouter)
+apiRouter.use('/notes', notesRouter)
+apiRouter.use('/categories', categoriesRouter)
 
-export default router
+export default apiRouter

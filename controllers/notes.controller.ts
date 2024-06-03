@@ -1,9 +1,13 @@
 import type { NextFunction, Request, Response } from "express";
 import pc from "../utils/prisma";
 import { OK } from "http-status";
+import { decodeToken } from "../config";
 
 const create = (req: Request, res: Response, next: NextFunction) => {
-    res.send('create')
+    const categories = pc.categoriess.findMany()
+    const token = decodeToken(req.headers.authorization)
+
+
 };
 
 const getAll = async (req: Request, res: Response, next: NextFunction) => {

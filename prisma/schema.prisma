@@ -32,8 +32,8 @@ model Note {
   category        Categoriess? @relation(fields: [categories_name], references: [name])
   title           String       @db.VarChar(80)
   content         String       @db.Text
-  done            Boolean
-  important       Boolean
+  done            Boolean      @default(false)
+  important       Boolean      @default(false)
   schedule        DateTime     @default(now())
   createdAt       DateTime     @default(now())
   updatedAt       DateTime     @updatedAt()

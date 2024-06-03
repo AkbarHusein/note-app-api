@@ -2,7 +2,7 @@ import type { Request, Response, NextFunction } from "express"
 import pc from "../../utils/prisma"
 import status from 'http-status';
 import { compareSync } from 'bcryptjs'
-import { signing } from "../../config";
+import { createToken } from "../../config";
 
 const loginHandler = async (req: Request, res: Response, next: NextFunction) => {
     const { email, password } = req.body
@@ -19,7 +19,7 @@ const loginHandler = async (req: Request, res: Response, next: NextFunction) => 
         if (!matchPassword) {
             return res.status(status.UNAUTHORIZED).json({ message: "Password is incorrect" })
         }
-        const token = signing({ username: user.username, email })
+        const token = createToken({ username: user.username, email })
 
         res.status(status.OK).json({
             message: "Login successfully",

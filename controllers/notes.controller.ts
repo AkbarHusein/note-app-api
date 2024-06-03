@@ -19,8 +19,19 @@ const getAll = async (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
-const detail = (req: Request, res: Response, next: NextFunction) => {
-    res.send('detail')
+const detail = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { id } = req.params
+
+        const note = await pc.note.findFirst({ where: { id } }) || []
+
+        res.status(OK).json({
+            status: 'success',
+            data: note
+        })
+    } catch (error) {
+        next(error)
+    }
 };
 
 const edit = (req: Request, res: Response, next: NextFunction) => {

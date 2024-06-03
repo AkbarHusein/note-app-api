@@ -38,8 +38,28 @@ const edit = (req: Request, res: Response, next: NextFunction) => {
     res.send('edit')
 };
 
-const delete_ = (req: Request, res: Response, next: NextFunction) => {
-    res.send('delete_')
+const delete_ = async (req: Request, res: Response, next: NextFunction) => {
+    const { id } = req.params
+
+    try {
+        const note = await pc.note.findFirst({ where: { id } })
+
+        if (!note) {
+            return res.status(404).json({
+                status: 'error',
+                message: 'Note not found'
+            })
+        }
+
+        await pc.note.delete({ where: { id } })
+
+        res.status(OK).json({
+            status: 'success',
+            message: 'note deleted'
+        })
+    } catch (error) {
+        next(error)
+    }
 };
 
 

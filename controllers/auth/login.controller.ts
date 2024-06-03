@@ -8,7 +8,7 @@ const loginHandler = async (req: Request, res: Response, next: NextFunction) => 
     const { email, password } = req.body
 
     try {
-        const user = await pc.user.findFirstOrThrow({ where: { email } })
+        const user = await pc.user.findFirst({ where: { email } })
 
         if (!user) {
             return res.status(status.NOT_FOUND).json({ message: "User not found" })

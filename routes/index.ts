@@ -1,10 +1,13 @@
 import { Router } from 'express'
-import validator, { auth } from '../middlewares/validator'
-import { loginHandler, registerHandler } from '../controllers'
+import auth from './auth'
 
 const router = Router()
 
-router.post('/register', auth.registValidation, validator, registerHandler)
-router.post('/login', auth.loginValidation, validator, loginHandler)
+router.use('/auth', auth)
+router.use('/api', (req, res, next) => {
+    console.log('api')
+    res.send('ok')
+    next()
+})
 
 export default router

@@ -19,14 +19,16 @@ async function main() {
                 content: 'Note 1 content',
                 user_email: 'vanhusein@gmail.com',
                 done: true,
-                important: true
+                important: true,
+                schedule: new Date()
             },
             {
                 title: 'Note 2',
                 content: 'Note 2 content',
                 user_email: 'vanhusein@gmail.com',
                 done: false,
-                important: false
+                important: false,
+                schedule: new Date()
             }
         ]
     })

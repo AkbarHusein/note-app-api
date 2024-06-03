@@ -34,7 +34,7 @@ model Note {
   content         String       @db.Text
   done            Boolean
   important       Boolean
-  schedule        DateTime
+  schedule        DateTime     @default(now())
   createdAt       DateTime     @default(now())
   updatedAt       DateTime     @updatedAt()
 }

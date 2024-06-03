@@ -1,8 +1,10 @@
 import { Router } from "express";
-import notesHandler from "../../controllers/api/notes.controller";
+import notesRouter from "./notes";
+import categoriesRouter from "./categories";
 
 const router = Router()
 
-router.get('/notes', notesHandler)
+router.use('/notes', notesRouter)
+router.use('/categories', categoriesRouter)
 
 export default router

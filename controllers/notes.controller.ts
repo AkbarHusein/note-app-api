@@ -1,11 +1,22 @@
 import type { NextFunction, Request, Response } from "express";
+import pc from "../utils/prisma";
+import { OK } from "http-status";
 
 const create = (req: Request, res: Response, next: NextFunction) => {
     res.send('create')
 };
 
-const getAll = (req: Request, res: Response, next: NextFunction) => {
-    res.send('get all')
+const getAll = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const notes = await pc.note.findMany()
+
+        res.status(OK).json({
+            status: 'success',
+            data: notes
+        })
+    } catch (error) {
+        next(error)
+    }
 };
 
 const detail = (req: Request, res: Response, next: NextFunction) => {

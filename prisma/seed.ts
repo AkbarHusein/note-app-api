@@ -17,12 +17,16 @@ async function main() {
             {
                 title: 'Note 1',
                 content: 'Note 1 content',
-                user_email: 'vanhusein@gmail.com'
+                user_email: 'vanhusein@gmail.com',
+                done: true,
+                important: true
             },
             {
                 title: 'Note 2',
                 content: 'Note 2 content',
-                user_email: 'vanhusein@gmail.com'
+                user_email: 'vanhusein@gmail.com',
+                done: false,
+                important: false
             }
         ]
     })

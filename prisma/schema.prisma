@@ -7,13 +7,36 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Theme {
-  id          String        @id @default(uuid())
-  name        String        @unique @db.VarChar(150)
-  code        String        @db.VarChar(20)
-  Categoriess Categoriess[]
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt()
+enum ScheduleMenu {
+  Today
+  Tomorrow
+  NextWeek
+  SelectDate
+}
+
+model User {
+  id        String   @id @default(uuid())
+  username  String   @db.VarChar(80)
+  email     String   @unique
+  password  String   @db.Text
+  Notes     Note[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+}
+
+model Note {
+  id              String       @id @default(uuid())
+  user_email      String
+  user            User?        @relation(fields: [user_email], references: [email])
+  categories_name String?
+  category        Categoriess? @relation(fields: [categories_name], references: [name])
+  title           String       @db.VarChar(80)
+  content         String       @db.Text
+  done            Boolean
+  important       Boolean
+  schedule        DateTime
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt()
 }
 
 model Categoriess {
@@ -27,24 +50,11 @@ model Categoriess {
   updatedAt  DateTime @updatedAt()
 }
 
-model Note {
-  id              String       @id @default(uuid())
-  user_email      String
-  user            User?        @relation(fields: [user_email], references: [email])
-  categories_name String?
-  category        Categoriess? @relation(fields: [categories_name], references: [name])
-  title           String       @db.VarChar(80)
-  content         String       @db.Text
-  createdAt       DateTime     @default(now())
-  updatedAt       DateTime     @updatedAt()
-}
-
-model User {
-  id        String   @id @default(uuid())
-  username  String   @db.VarChar(80)
-  email     String   @unique
-  password  String   @db.Text
-  Notes     Note[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt()
+model Theme {
+  id          String        @id @default(uuid())
+  name        String        @unique @db.VarChar(150)
+  code        String        @db.VarChar(20)
+  Categoriess Categoriess[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt()
 }

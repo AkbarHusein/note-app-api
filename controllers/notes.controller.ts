@@ -7,6 +7,7 @@ const create = (req: Request, res: Response, next: NextFunction) => {
     const categories = pc.categoriess.findMany()
     const token = decodeToken(req.headers.authorization)
 
+    res.send('ok')
 
 };
 

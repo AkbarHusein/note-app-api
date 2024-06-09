@@ -1,3 +1,4 @@
+import { hashSync } from 'bcryptjs'
 import pc from '../utils/prisma'
 
 async function main() {
@@ -5,7 +6,7 @@ async function main() {
         data: {
             username: 'vanhusein',
             email: 'vanhusein@gmail.com',
-            password: 'password',
+            password: hashSync('password'),
         },
     })
 
@@ -18,16 +19,12 @@ async function main() {
                 title: 'Note 1',
                 content: 'Note 1 content',
                 user_email: 'vanhusein@gmail.com',
-                done: true,
-                important: true,
                 schedule: new Date()
             },
             {
                 title: 'Note 2',
                 content: 'Note 2 content',
                 user_email: 'vanhusein@gmail.com',
-                done: false,
-                important: false,
                 schedule: new Date()
             }
         ]
@@ -61,7 +58,6 @@ async function main() {
             {
                 name: 'Hari Saya',
                 icon: 'ri-sun-line',
-                theme_name: 'White'
             },
             {
                 name: 'Penting',

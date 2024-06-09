@@ -1,4 +1,5 @@
 import * as auth from './auth'
+import * as note from './note'
 
 import type { Response, Request, NextFunction } from 'express'
 import status from 'http-status'
@@ -12,6 +13,6 @@ const validator = (req: Request, res: Response, next: NextFunction) => {
     next()
 }
 
-export { auth }
+export { auth, note }
 
 export default validator

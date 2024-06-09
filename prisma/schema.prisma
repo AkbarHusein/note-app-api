@@ -44,7 +44,7 @@ model Categoriess {
   name       String   @unique @db.VarChar(150)
   icon       String?  @default("ri-list-check") @db.VarChar(40)
   Notes      Note[]
-  theme_name String?  @default("default")
+  theme_name String?  @default("black")
   theme      Theme?   @relation(fields: [theme_name], references: [name])
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt()

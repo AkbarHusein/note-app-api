@@ -1,14 +1,27 @@
 import type { NextFunction, Request, Response } from "express";
 import pc from "../utils/prisma";
-import { OK } from "http-status";
+import { CREATED, NOT_FOUND, OK } from "http-status";
 import { decodeToken } from "../config";
+import { CreateNoteProps, Note } from "types/note";
 
-const create = (req: Request, res: Response, next: NextFunction) => {
+const create = async (req: Request<{}, {}, CreateNoteProps>, res: Response, next: NextFunction) => {
     const categories = pc.categoriess.findMany()
     const token = decodeToken(req.headers.authorization)
+    const { title, content } = req.body
 
-    res.send('ok')
+    try {
+        const newNote: Note = await pc.note.create({
+            data: {
+                user_email: token?.email,
+                title,
+                content,
+            }
+        })
 
+        res.status(CREATED).json({ message: "Note created successfully" })
+    } catch (error) {
+        next(error)
+    }
 };
 
 const getAll = async (req: Request, res: Response, next: NextFunction) => {
@@ -28,10 +41,15 @@ const detail = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { id } = req.params
 
-        const note = await pc.note.findFirst({ where: { id } }) || []
+        const note = await pc.note.findFirst({ where: { id } })
+
+        if (!note) {
+            return res.status(NOT_FOUND).json({
+                data: note
+            })
+        }
 
         res.status(OK).json({
-            status: 'success',
             data: note
         })
     } catch (error) {

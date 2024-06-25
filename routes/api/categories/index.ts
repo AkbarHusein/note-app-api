@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { categoriesHandler } from "../../../controllers";
+import { Router } from "express"
+import { categoriesHandler } from "../../../controllers"
 
 const categoriesRouter = Router()
 

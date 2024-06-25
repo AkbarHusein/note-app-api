@@ -1,8 +1,8 @@
 import type { Request, Response, NextFunction } from "express"
 import pc from "../../utils/prisma"
-import status from 'http-status';
+import status from 'http-status'
 import { compareSync } from 'bcryptjs'
-import { createToken } from "../../config";
+import { createToken } from "../../config"
 
 const loginHandler = async (req: Request, res: Response, next: NextFunction) => {
     const { email, password } = req.body

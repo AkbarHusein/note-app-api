@@ -1,8 +1,8 @@
-import type { NextFunction, Request, Response } from "express";
-import pc from "../utils/prisma";
-import { CREATED, NOT_FOUND, OK } from "http-status";
-import { decodeToken } from "../config";
-import { CreateNoteProps, Note } from "types/note";
+import type { NextFunction, Request, Response } from "express"
+import pc from "../utils/prisma"
+import { CREATED, NOT_FOUND, OK } from "http-status"
+import { decodeToken } from "../config"
+import { CreateNoteProps, Note } from "types/note"
 
 const create = async (req: Request<{}, {}, CreateNoteProps>, res: Response, next: NextFunction) => {
     const categories = pc.categoriess.findMany()
@@ -22,7 +22,7 @@ const create = async (req: Request<{}, {}, CreateNoteProps>, res: Response, next
     } catch (error) {
         next(error)
     }
-};
+}
 
 const getAll = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -35,7 +35,7 @@ const getAll = async (req: Request, res: Response, next: NextFunction) => {
     } catch (error) {
         next(error)
     }
-};
+}
 
 const detail = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -55,11 +55,11 @@ const detail = async (req: Request, res: Response, next: NextFunction) => {
     } catch (error) {
         next(error)
     }
-};
+}
 
-const edit = (req: Request, res: Response, next: NextFunction) => {
-    res.send('edit')
-};
+const edit = async (req: Request<{}, {}, CreateNoteProps>, res: Response, next: NextFunction) => {
+    const { title, content } = req.body
+}
 
 const delete_ = async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params
@@ -83,7 +83,7 @@ const delete_ = async (req: Request, res: Response, next: NextFunction) => {
     } catch (error) {
         next(error)
     }
-};
+}
 
 
 export {

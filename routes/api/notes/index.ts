@@ -1,5 +1,5 @@
-import { Router } from "express";
-import hariSayaRouter from "./hari-saya";
+import { Router } from "express"
+import hariSayaRouter from "./hari-saya"
 
 const notesRouter = Router()
 
